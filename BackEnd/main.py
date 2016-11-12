@@ -1,3 +1,7 @@
-import pytesseract
+from pytesseract import image_to_string
 from PIL import Image
-print(pytesseract.image_to_string(Image.open('test.jpg')))
+
+im = Image.open(r'File_000.jpeg')
+print(im)
+
+print(image_to_string(im))

@@ -1,5 +1,5 @@
-from dateutil.relativedelta import relativedelta
 import datetime
+from datetime import date
 
 def main(filename):
     codes = {'DAC': 'fName', 'DAD': 'mName', 'DCS': 'lName', 'DBB': 'DOB', 
@@ -21,5 +21,5 @@ def main(filename):
             elif code == 'DDJ':
                 dateT = datetime.date(int(line[7:]),
                         int(line[3:5]), int(line[5:7]))
-                data['lDOB'] = (dateT - relativedelta(years=3)).strftime('%m%d%Y')
+                data['lDOB'] = (dateT.replace(year = dateT.year -3)).strftime('%m%d%Y')
     return data

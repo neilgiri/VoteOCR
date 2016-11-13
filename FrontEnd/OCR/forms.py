@@ -44,6 +44,12 @@ class Voter(forms.Form):
     citizen = forms.CharField(
         max_length=3,
     )
+    ssn = forms.CharField(
+        max_length=4,
+    )
+    bbm = forms.CharField(
+        max_length=4,
+    )
     langpref = forms.CharField(
         max_length=30,
     )

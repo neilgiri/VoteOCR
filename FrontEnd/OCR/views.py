@@ -4,6 +4,7 @@ from .forms import Voter, GetImage
 from PIL import *
 from .register import main
 from california_voter import fill_registeration, classification_selection
+from findCounty import getCounty
 
 readValues = {}
 def Thanks(request):
@@ -17,6 +18,9 @@ def VoterForm(request):
             d['mName'] = f.cleaned_data['mname']
             d['lName'] = f.cleaned_data['lname']
             d['DOB'] = f.cleaned_data['dob']
+            d['DOBM'] = f.cleaned_data['dob'][0:2]
+            d['DOBD'] = f.cleaned_data['dob'][2:4]
+            d['DOBY'] = f.cleaned_data['dob'][4:]
             d['SEX'] = f.cleaned_data['sex']
             d['aStreet'] = f.cleaned_data['adr1']
             d['aStreet2'] = f.cleaned_data['adr2']
@@ -27,8 +31,10 @@ def VoterForm(request):
             d['citizen'] = f.cleaned_data['citizen']
             d['email'] = f.cleaned_data['email']
             d['lang'] = f.cleaned_data['langpref']
-            #d['county'] = getCounty()
+            d['county'] = getCounty(d['aZip'])
             d['ppp'] = f.cleaned_data['ppp']
+            d['ssn'] = f.cleaned_data['ssn']
+            d['bbm'] = f.cleaned_data['bbm']
             fill_registeration(d)
             return HttpResponseRedirect('/Thanks/')
     else:
@@ -43,6 +49,7 @@ def VoterForm(request):
     f.fields['numdl'].lab = "Are you a U.S. citizen?"
     f.fields['langpref'].label = "Language Preference"
     f.fields['ppp'].label = "Political Party Preference"
+    f.fields['ssn'].label = "Last Four Digits of Your SSN"
     return render(request, 'OCR/VoterForm.html', {'form' : f})
 
 def ImageSubmit(request):

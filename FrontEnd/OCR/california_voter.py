@@ -6,7 +6,7 @@ from BeautifulSoup import BeautifulSoup
 from datetime import date
 
 def classification_selection(num):
-    class_dict = {'1': 'A001', '2': 'B002', '3': 'C003', '4': 'D004', 
+    class_dict = {'1': 'A001', '2': 'B002', '3': 'C003', '4': 'D004',
             '5': 'E005', '6': 'F006', '7': 'G007'}
     return class_dict[num]
 
@@ -40,7 +40,6 @@ def fill_registeration(dictionary):
             select_party = True
             party = 'Democratic04'
 
-            if 
 
             br.form.set_value([dictionary['citizen']], type='checkbox', name='VoterInformation.IsUsCitizen')
             br.form.set_value(['true'], type='checkbox', name='VoterInformation.IsEighteenYear')
@@ -74,7 +73,7 @@ def fill_registeration(dictionary):
 
         for control in br.form.controls:
             print(control)
-    
+
         if i < 1:
             br.submit()
         elif i < 3:
@@ -85,4 +84,3 @@ def fill_registeration(dictionary):
             br.set_response(resp)
         else:
             print(br.form)
-

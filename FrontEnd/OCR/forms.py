@@ -41,18 +41,42 @@ class Voter(forms.Form):
     numdl = forms.CharField(
         max_length=15,
     )
-    citizen = forms.CharField(
-        max_length=3,
+    YN = (
+        ('true', "Yes"),
+        ('false', "No")
+    )
+    citizen = forms.ChoiceField(
+        choices = YN,
     )
     ssn = forms.CharField(
         max_length=4,
     )
-    bbm = forms.CharField(
-        max_length=4,
+    bbm = forms.ChoiceField(
+        choices = YN,
     )
-    langpref = forms.CharField(
-        max_length=30,
+    LANG = (
+        ('english', 'English'),
+        ('chinese', 'Chinese'),
+        ('hindi', 'Hindi'),
+        ('janapese', 'Japanese'),
+        ('khmer', 'Khmer'),
+        ('korean', 'Korean'),
+        ('spanish', 'Spanish'),
+        ('tagalog', 'Tagalog'),
+        ('thai', 'Thai'),
+        ('vietnamese', 'Vietnamese'),
     )
-    ppp = forms.CharField(
-        max_length=30,
+    langpref = forms.ChoiceField(
+        choices=LANG
+    )
+    PARTIES = (
+        ('AmericanIn02', 'American Independent'),
+        ('Democratic04', 'Democratic'),
+        ('Green05', 'Green'),
+        ('Libertarian06', 'Libertarian'),
+        ('PeaceandFr07', 'Peace and Freedom'),
+        ('Republican08', 'Republican'),
+    )
+    ppp = forms.ChoiceField(
+        choices=PARTIES,
     )

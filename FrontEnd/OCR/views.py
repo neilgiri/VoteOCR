@@ -31,7 +31,7 @@ def VoterForm(request):
             d['citizen'] = f.cleaned_data['citizen']
             d['email'] = f.cleaned_data['email']
             d['lang'] = f.cleaned_data['langpref']
-            d['county'] = getCounty(d['aZip'])
+            d['county'] = getCounty(d['aZip'].encode('ascii', 'ignore'))
             d['ppp'] = f.cleaned_data['ppp']
             d['ssn'] = f.cleaned_data['ssn']
             d['bbm'] = f.cleaned_data['bbm']
@@ -50,6 +50,7 @@ def VoterForm(request):
     f.fields['langpref'].label = "Language Preference"
     f.fields['ppp'].label = "Political Party Preference"
     f.fields['ssn'].label = "Last Four Digits of Your SSN"
+    f.fields['bbm'].label = "Would you like to recieve your ballot by mail?"
     return render(request, 'OCR/VoterForm.html', {'form' : f})
 
 def ImageSubmit(request):

@@ -31,7 +31,7 @@ def VoterForm(request):
             d['citizen'] = f.cleaned_data['citizen']
             d['email'] = f.cleaned_data['email']
             d['lang'] = f.cleaned_data['langpref']
-            d['county'] = getCounty(d['aZip'].encode('ascii', 'ignore'))
+            d['county'] = getCounty(str(d['aZip'].encode('ascii', 'ignore')))
             d['ppp'] = f.cleaned_data['ppp']
             d['ssn'] = f.cleaned_data['ssn']
             d['bbm'] = f.cleaned_data['bbm']

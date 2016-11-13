@@ -12,15 +12,10 @@ def classification_selection(num):
 
 br = mechanize.Browser()
 url_name = "https://covr.sos.ca.gov/"
-#br.set_handle_robots(False)
-#br.addheaders = [('User-agent', 'Firefox')]
-#br.addheaders.append( ['Accept-Encoding','gzip'] )
-#br.set_debug_http(True)
-#br.set_debug_responses(True)
 
 br.open(url_name)
 
-for i in range(3):
+for i in range(4):
     br.form = list(br.forms())[0]
     if i == 0:
         br.form.set_value([classification_selection('1')], name='VoterType')
@@ -62,28 +57,29 @@ for i in range(3):
         br.form.set_value([party], name='VoterInformation.PoliticalPartyIdKey')
     elif i == 2:
         vote_mail = 'false'
-        poll_worker = 'false'
-        polling_place = 'false'
+        poll_worker = None
+        polling_place = None
 
         dmv_signature = 'true'
         affirmation = 'true'
 
         br.form.set_value([vote_mail], name='VoterInformation.IsVoteByMail')
-        br.form.set_value([poll_worker], name='VoterInformation.IsAPollWorker')
-        br.form.set_value([polling_place], name='VoterInformation.IsPollingPlaceProvided')
-
-    
-
+        br.form.set_value([poll_worker], type='checkbox', name='VoterInformation.IsAPollWorker')
+        br.form.set_value([polling_place], type='checkbox', name='VoterInformation.IsPollingPlaceProvided')
+        br.form.set_value([dmv_signature], name="VoterInformation.IsDmvSignatureConsent")
+        br.form.set_value([affirmation], type='checkbox', name="VoterInformation.isAffirmationSelected")
 
     for control in br.form.controls:
         print(control)
     
     if i < 1:
         br.submit()
-    else:
+    elif i < 3:
         req = br.submit(nr=1)
         resp = br.open(req.geturl())
         soup = BeautifulSoup(resp.get_data())
         resp.set_data(soup.prettify())
         br.set_response(resp)
+    else:
+        print(br.form)
 

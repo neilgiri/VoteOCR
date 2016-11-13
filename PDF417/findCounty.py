@@ -1,24 +1,26 @@
 import re
 import mechanize
 import parser
+from bs4 import BeautifulSoup
 
-#def main(zipcode):
-br = mechanize.Browser()
-url = "http://www.getzips.com/zip.htm"
+def main(zipcode):
+    br = mechanize.Browser()
+    url = "https://www.melissadata.com/lookups/zipcityphone.asp"
 
-br.open(url)
+    br.open(url)
 
-br.form = list(br.forms())[0]
+    br.form = list(br.forms())[0]
 
-zipControl = br.find_control("Zip")
-zipControl.value = "90274"
+    zipControl = br.find_control("InData")
+    zipControl.value = zipcode
 
-br.submit()
+    response = br.submit()
 
-county = 
-
-#controls = list(br.form1.controls)
+    soup = BeautifulSoup(response, 'html.parser')
     
-#for control in controls:
- #   print(control1)
+    stringPage = soup.get_text()
+    stringPage = stringPage.split("County Seat",1)[1]
+    stringPage = stringPage.split('(',1)[0]
+    
+    return stringPage
 

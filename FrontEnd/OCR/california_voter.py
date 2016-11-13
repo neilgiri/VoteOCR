@@ -44,9 +44,9 @@ def fill_registeration(dictionary):
             br.form.set_value(['true'], type='checkbox', name='VoterInformation.IsEighteenYear')
             br.form.set_value(dictionary['fname'], name='VoterInformation.NameFirst')
             br.form.set_value(dictionary['lname'], name='VoterInformation.NameLast')
-            br.form.set_value([dictionary['month']], name='VoterInformation.Month')
-            br.form.set_value([dictionary['day']], name='VoterInformation.Day')
-            br.form.set_value(dictionary['year'], name='VoterInformation.Year')
+            br.form.set_value([dictionary['DOBM']], name='VoterInformation.Month')
+            br.form.set_value([dictionary['DOBD']], name='VoterInformation.Day')
+            br.form.set_value(dictionary['DOBY'], name='VoterInformation.Year')
 
             br.form.set_value(dictionary['numDL'], name='VoterInformation.CaIdentification')
             br.form.set_value(dictionary['ssn'], name='VoterInformation.SsnLastFour')
@@ -64,7 +64,7 @@ def fill_registeration(dictionary):
             dmv_signature = 'true'
             affirmation = 'true'
 
-            br.form.set_value([dictionary['mail']], name='VoterInformation.IsVoteByMail')
+            br.form.set_value([dictionary['bbm']], name='VoterInformation.IsVoteByMail')
             br.form.set_value([poll_worker], type='checkbox', name='VoterInformation.IsAPollWorker')
             br.form.set_value([polling_place], type='checkbox', name='VoterInformation.IsPollingPlaceProvided')
             br.form.set_value([dmv_signature], name="VoterInformation.IsDmvSignatureConsent")

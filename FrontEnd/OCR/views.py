@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from .forms import Voter, GetImage
 from PIL import *
+from .register import main
 
-#from Neil'sLib import IDImageHandler
 readValues = {}
 def Thanks(request):
     return render(request, 'OCR/Thanks.html')
@@ -16,8 +16,10 @@ def VoterForm(request):
             d['mName'] = f.cleaned_data['mname']
             d['lName'] = f.cleaned_data['lname']
             d['DOB'] = f.cleaned_data['dob']
+            d['SEX'] = f.cleaned_data['sex']
             d['aStreet'] = f.cleaned_data['adr1']
             d['aStreet2'] = f.cleaned_data['adr2']
+            d['aCity'] = f.cleaned_data['city']
             d['aState'] = f.cleaned_data['state']
             d['aZip'] = f.cleaned_data['zip']
             d['numDL'] = f.cleaned_data['numdl']
@@ -48,8 +50,8 @@ def ImageSubmit(request):
         f = GetImage(request.POST, request.FILES)
         if f.is_valid():
             print(request.FILES['image'])
-            #out = IDImageHandler(request.FILES['image'])
-            readValues = {'fname': out['fName'], 'mname': out['mName'], 'lname': out['lName'], 'dob': out['DOB'], adr1: out['aStreet'], 'state': out['aState'], 'zip': out['aZip'], 'numdl': out['numDL']}
+            out = main(request.FILES['image'])
+            readValues = {'fname': out['fName'], 'mname': out['mName'], 'lname': out['lName'], 'dob': out['DOB'], 'sex': out['SEX'], 'adr1': out['aStreet'], 'city': out['aCity'], 'state': out['aState'], 'zip': out['aZip'], 'numdl': out['numDL']}
             return HttpResponseRedirect('/VoterForm/')
     else:
         f = GetImage(label_suffix='')

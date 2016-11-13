@@ -15,6 +15,9 @@ class Voter(forms.Form):
     dob = forms.CharField(
 
     )
+    sex = forms.CharField(
+        max_length=6,
+    )
     email = forms.EmailField(
 
     )

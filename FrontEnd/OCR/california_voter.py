@@ -1,7 +1,7 @@
 import re
 import mechanize
 import parser
-import forms
+#import views
 from BeautifulSoup import BeautifulSoup
 from datetime import date
 
@@ -39,8 +39,6 @@ def fill_registeration(dictionary):
 
             select_party = True
             party = 'Democratic04'
-
-            if 
 
             br.form.set_value([dictionary['citizen']], type='checkbox', name='VoterInformation.IsUsCitizen')
             br.form.set_value(['true'], type='checkbox', name='VoterInformation.IsEighteenYear')

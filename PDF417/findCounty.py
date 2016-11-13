@@ -21,6 +21,7 @@ def main(zipcode):
     stringPage = soup.get_text()
     stringPage = stringPage.split("County Seat",1)[1]
     stringPage = stringPage.split('(',1)[0]
-    
+    stringPage = stringPage[:-1]
+
     return stringPage
 

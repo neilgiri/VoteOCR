@@ -1,22 +1,34 @@
-body {
-  margin: 0;
-  padding: 0;
-
-  width: 100%;
-
-  background-color: #fffafa;
+.blue-background{
+  background-color: #0052A5;
+  color: white;
 }
-.btn{
+.fill {
+    height: 100%;
+}
+.row{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.external-padding{
+  margin-bottom: 2%
+}
+.top-offset{
+  padding-top: 5%;
+}
+.small{
+  color: white;
+}
+.cust-btn{
   z-index: 50;
   height: 60px;
   width: 150px;
 
   background-color: #0052A5;
-  color: #fffafa;
+  color: white;
 
   border-width: 3px;
   border-radius: 2px;
-  border-color: #fffafa;
+  border-color: white;
   border-style: solid;
 
   font-family: Helvetica, sans-serif;
@@ -28,13 +40,19 @@ body {
   -moz-transition-duration: 1s;
 }
 
-.btn:hover{
+.cust-btn:hover{
   transition-duration: 1s;
   -webkit-transition-duration: 1s;
   -moz-transition-duration: 1s;
+  background-color: white;
+  color: #0052A5;
 }
 
 label{
   display: inline-block;
   vertical-align: middle;
+}
+
+header{
+  padding-bottom: 5%;
 }

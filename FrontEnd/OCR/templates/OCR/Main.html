@@ -2,23 +2,41 @@
 <! DOCTYPE html>
 <html lang='en'>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
     <style>
       {% for field in form %}
         #{{ field.auto_id }}{visibility: hidden; position: absolute; top: 0; left: 0; z-index: 100;}
       {% endfor %}
     </style>
-    <title>VoterOCR</title>
+    <title>VoteOCR</title>
   </head>
   <body>
-    <form enctype="multipart/form-data" method = "post" class='image-form'>{% csrf_token %}
-      {% for field in form %}
-        <label for= {{ field.auto_id }} class='btn'>Select Image</label>
-        <p>{{ field }}</p>
-      {% endfor %}
-      <button type="submit" id='submit-btn' class="save btn">Submit</button>
-    </form>
+    <div class='fluid-container blue-background fill'>
+      <div class='row top-offset'>
+        <div class='col-xs-2'></div>
+        <div class='col-xs-8 text-center'>
+          <h1>VoteCTR<br><h4><small class='text-lowercase'>Register to vote using your camera</small></h4></h1>
+        </div>
+        <div class='col-xs-2'></div>
+      </div>
+      <div class='row'>
+        <div class='col-xs-3'></div>
+        <div class='col-xs-6 text-center'>
+          <form enctype="multipart/form-data" method = "post" class='image-form'>{% csrf_token %}
+            {% for field in form %}
+              <label for= {{ field.auto_id }} class='label cust-btn'>Select Image</label>
+              <p>{{ field }}</p>
+            {% endfor %}
+            <button type="submit" id='submit-btn' class="save cust-btn">Submit</button>
+          </form>
+        </div>
+        <div class='col-xs-3'></div>
+      </div>
+    </div>
   </body>
 </html>

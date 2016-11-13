@@ -1,15 +1,30 @@
 {% load staticfiles %}
 <! DOCTYPE html>
-<html>
+<html lang='en'>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
 
-    <title>VoterOCR</title>
+    <title>VoteOCR</title>
   </head>
   <body>
-    {% block content %}
-    {% endblock %}
+    <header>
+      <div class='fluid-container blue-background'>
+        <div class='row'>
+          <div class='col-xs-1'></div>
+          <div class='col-xs-10 text-center'>
+            <h1>VoteOCR<h1>
+          </div>
+          <div class='col-xs-1'></div>
+        </div>
+      </div>
+    </header>
+    <div class='fluid-container'>
+      {% block content %}
+      {% endblock %}
+    </div>
   </body>
 </html>

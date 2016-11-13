@@ -2,13 +2,17 @@
 {% block content %}
 <form method = "post" class='form-horizontal'>{% csrf_token %}
   {% for field in form %}
-    <div class='form-group'>
-      <label class='col-sm-5'>{{ field.label_tag }}</label>
-      <div class='col-sm-7'>
+    <div class='row external-padding'>
+      <label class'col-xs-6 text-left'>{{ field.label_tag }}</label>
+      <div class='col-xs-6 text-right'>
         <p>{{ field }}</p>
       </div>
     </div>
   {% endfor %}
-  <button type="submit" id='submit-btn' class="save btn">Submit</button>
+  <div class='row'>
+    <div class='col-xs-12 text-center'>
+      <button type="submit" id='submit-btn' class="cust-btn">Submit</button>
+    </div>
+  </div>
 </form>
 {% endblock %}

@@ -1,5 +1,5 @@
-from dateutil.relativedelta import relativedelta
 import datetime
+from datetime import date
 
 
 def main(filename):
@@ -20,5 +20,5 @@ def main(filename):
                 dateT = datetime.date(int(line[7:]), 
                         int(line[3:5]), int(line[5:7]))
                 writer.write(
-                        (dateT - relativedelta(years=3)).strftime('%m%d%Y'))
+                        (dateT.replace(year = dateT.year - 3)).strftime('%m%d%Y'))
     writer.close()

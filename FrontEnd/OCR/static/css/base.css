@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  padding: 0;
+
+  width: 100%;
+
+  background-color: #fffafa;
+}
+.btn{
+  z-index: 50;
+  height: 60px;
+  width: 150px;
+
+  background-color: #0052A5;
+  color: #fffafa;
+
+  border-width: 3px;
+  border-radius: 2px;
+  border-color: #fffafa;
+  border-style: solid;
+
+  font-family: Helvetica, sans-serif;
+  font-size: 15px;
+  text-transform: uppercase;
+
+  transition-duration: 1s;
+  -webkit-transition-duration: 1s;
+  -moz-transition-duration: 1s;
+}
+
+.btn:hover{
+  transition-duration: 1s;
+  -webkit-transition-duration: 1s;
+  -moz-transition-duration: 1s;
+}
+
+label{
+  display: inline-block;
+  vertical-align: middle;
+}

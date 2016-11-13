@@ -1,0 +1,14 @@
+{% extends 'OCR/base.html' %}
+{% block content %}
+<form method = "post" class='form-horizontal'>{% csrf_token %}
+  {% for field in form %}
+    <div class='form-group'>
+      <label class='col-sm-5'>{{ field.label_tag }}</label>
+      <div class='col-sm-7'>
+        <p>{{ field }}</p>
+      </div>
+    </div>
+  {% endfor %}
+  <button type="submit" id='submit-btn' class="save btn">Submit</button>
+</form>
+{% endblock %}

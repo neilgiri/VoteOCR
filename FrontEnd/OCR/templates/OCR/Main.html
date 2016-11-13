@@ -1,8 +1,24 @@
-{% block content %}
-<form enctype="multipart/form-data" method = "post" class='image-form'>{% csrf_token %}
-  {% for field in form %}
-    <p>{{ field }}</p>
-  {% endfor %}
-  <button type="submit" id='submit-btn' class="save btn">Submit</button>
-</form>
-{% endblock %}
+{% load staticfiles %}
+<! DOCTYPE html>
+<html lang='en'>
+  <head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <style>
+      {% for field in form %}
+        #{{ field.auto_id }}{visibility: hidden; position: absolute; top: 0; left: 0; z-index: 100;}
+      {% endfor %}
+    </style>
+    <title>VoterOCR</title>
+  </head>
+  <body>
+    <form enctype="multipart/form-data" method = "post" class='image-form'>{% csrf_token %}
+      {% for field in form %}
+        <label for= {{ field.auto_id }} class='btn'>Select Image</label>
+        <p>{{ field }}</p>
+      {% endfor %}
+      <button type="submit" id='submit-btn' class="save btn">Submit</button>
+    </form>
+  </body>
+</html>

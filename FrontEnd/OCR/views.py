@@ -31,18 +31,18 @@ def VoterForm(request):
             d['citizen'] = f.cleaned_data['citizen']
             d['email'] = f.cleaned_data['email']
             d['lang'] = f.cleaned_data['langpref']
-            d['county'] = getCounty(str(d['aZip'].encode('ascii', 'ignore')))
+            d['county'] = getCounty(d['aZip'].encode('ascii', 'ignore'))
             d['ppp'] = f.cleaned_data['ppp']
             d['ssn'] = f.cleaned_data['ssn']
             d['bbm'] = f.cleaned_data['bbm']
             fill_registeration(d)
             return HttpResponseRedirect('/Thanks/')
     else:
-        f = Voter(initial=readValues, label_suffix='')
+        f = Voter(initial=readValues, label_suffix='', auto_id=True)
     f.fields['fname'].label = "First Name"
     f.fields['mname'].label = "Middle Name (Optional)"
     f.fields['lname'].label = "Last Name"
-    f.fields['dob'].label = "Date of Birth (DD/MM/YYYY)"
+    f.fields['dob'].label = "Date of Birth (MMDDYYYY)"
     f.fields['adr1'].label = "Address Line 1"
     f.fields['adr2'].label = "Address Line 2"
     f.fields['numdl'].label = "Drivers License Number"

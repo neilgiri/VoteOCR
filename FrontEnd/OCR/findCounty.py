@@ -4,6 +4,7 @@ import parser
 from bs4 import BeautifulSoup
 
 def getCounty(zipcode):
+    zipcode = zipcode[0:5]
     br = mechanize.Browser()
     url = "https://www.melissadata.com/lookups/zipcityphone.asp"
 
@@ -17,10 +18,9 @@ def getCounty(zipcode):
     response = br.submit()
 
     soup = BeautifulSoup(response, 'html.parser')
-    
+
     stringPage = soup.get_text()
     stringPage = stringPage.split("County Seat",1)[1]
     stringPage = stringPage.split('(',1)[0]
-    
-    return stringPage
 
+    return stringPage

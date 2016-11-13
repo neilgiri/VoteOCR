@@ -1,8 +1,11 @@
 import re
 import mechanize
+import parser
 
 br = mechanize.Browser()
-response = br.open("http://www.datasymbol.com/barcode-recognition-sdk/barcode-reader/online-barcode-decoder.html")
+url_name = "http://www.datasymbol.com/barcode-recognition-sdk/barcode-reader/online-barcode-decoder.html"
+
+response = br.open(url_name)
 
 br.form = list(br.forms())[0]
 
@@ -13,7 +16,7 @@ type_control.value = ['0']
 pdf417_control = br.find_control("c12")
 pdf417_control.items[0].selected = True
 
-br.form.add_file(open("bar.jpeg"), "text/plain", "bar.jpeg")
+br.form.add_file(open("anson.jpeg"), "text/plain", "anson.jpeg")
 control = br.form.find_control("fupload1")
 
 submit_control = None
@@ -24,4 +27,12 @@ for controls in br.form.controls:
 submit_control.readonly = False
 
 response = br.submit()
-print(response.read())
+contents = response.read()
+
+f = open("in.txt", "w")
+f.write(contents)
+f.close()
+
+parser.main("in.txt")
+
+

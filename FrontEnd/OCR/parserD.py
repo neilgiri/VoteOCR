@@ -2,11 +2,11 @@ import datetime
 from datetime import date
 
 def main(dataArray):
-    codes = {'DAC': 'fName', 'DAD': 'mName', 'DCS': 'lName', 'DBB': 'DOB', 
-            'DAG': 'aStreet', 'DAI': 'aCity', 'DAJ': 'aState', 'DAK': 'aZip', 
+    codes = {'DAC': 'fName', 'DAD': 'mName', 'DCS': 'lName', 'DBB': 'DOB',
+            'DAG': 'aStreet', 'DAI': 'aCity', 'DAJ': 'aState', 'DAK': 'aZip',
             'DAQ': 'numDL'}
-    data = {'lName': "NONE", 'fName': "NONE", 'mName': "NONE", 'DOB': "NONE", 
-            'lDOB': "NONE", 'SEX': "NONE", 'aStreet': "NONE", 'aCity': "NONE", 
+    data = {'lName': "NONE", 'fName': "NONE", 'mName': "NONE", 'DOB': "NONE",
+            'lDOB': "NONE", 'SEX': "NONE", 'aStreet': "NONE", 'aCity': "NONE",
             'aState': "NONE", 'aZip': "NONE", 'numDL': "NONE"}
     for line in dataArray:
         code = line[0:3]

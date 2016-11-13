@@ -8,6 +8,7 @@ class Voter(forms.Form):
     )
     mname = forms.CharField(
         max_length=30,
+        required=False,
     )
     lname = forms.CharField(
         max_length=30,

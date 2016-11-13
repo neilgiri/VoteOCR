@@ -26,7 +26,9 @@ def fill_registeration(dictionary):
             first_name = 'Titan'
             last_name = 'Yuan'
             month_birth = '5'
-            day_birth = '19'
+            day_birth = dictionary['DOBD']
+            if int(day_birth) < 10:
+                day_birth = day_birth[1:]
             year_birth = '1985'
 
             drivers_license = 'F6913123'
@@ -35,25 +37,33 @@ def fill_registeration(dictionary):
 
             city = 'barack'
             zipcode = '94720'
-            county = 'Alameda01'
+            county = "".join(dictionary['county'].split())
+            print(county)
+
+            county_control = br.form.find_control(name='VoterInformation.CountyIdKey')
+            final_county = ''
+            for item in county_control.items:
+                if item.attrs['value'].upper().find(county) != -1:
+                    final_county = item.attrs['value']
 
             select_party = True
             party = 'Democratic04'
 
+            print(dictionary['citizen'])
             br.form.set_value([dictionary['citizen']], type='checkbox', name='VoterInformation.IsUsCitizen')
             br.form.set_value(['true'], type='checkbox', name='VoterInformation.IsEighteenYear')
-            br.form.set_value(dictionary['fname'], name='VoterInformation.NameFirst')
-            br.form.set_value(dictionary['lname'], name='VoterInformation.NameLast')
+            br.form.set_value(dictionary['fName'], name='VoterInformation.NameFirst')
+            br.form.set_value(dictionary['lName'], name='VoterInformation.NameLast')
             br.form.set_value([dictionary['DOBM']], name='VoterInformation.Month')
-            br.form.set_value([dictionary['DOBD']], name='VoterInformation.Day')
+            br.form.set_value([day_birth], name='VoterInformation.Day')
             br.form.set_value(dictionary['DOBY'], name='VoterInformation.Year')
 
             br.form.set_value(dictionary['numDL'], name='VoterInformation.CaIdentification')
             br.form.set_value(dictionary['ssn'], name='VoterInformation.SsnLastFour')
             br.form.set_value(dictionary['aStreet'], name='VoterInformation.AddressStreet1')
             br.form.set_value(dictionary['aCity'], name='VoterInformation.AddressCity')
-            br.form.set_value(dictionary['aZip'], name='VoterInformation.AddressZip')
-            br.form.set_value([dictionary['county']], name='VoterInformation.CountyIdKey')
+            br.form.set_value(dictionary['aZip'][0:5], name='VoterInformation.AddressZip')
+            br.form.set_value([final_county], name='VoterInformation.CountyIdKey')
             br.form.set_value(['True'], name='VoterInformation.isPoliticalPrefSelected')
             br.form.set_value([dictionary['ppp']], name='VoterInformation.PoliticalPartyIdKey')
         elif i == 2:
@@ -70,13 +80,16 @@ def fill_registeration(dictionary):
             br.form.set_value([dmv_signature], name="VoterInformation.IsDmvSignatureConsent")
             br.form.set_value([affirmation], type='checkbox', name="VoterInformation.isAffirmationSelected")
 
-        for control in br.form.controls:
-            print(control)
+        #for control in br.form.controls:
+        #    print(control)
 
         if i < 1:
             br.submit()
         elif i < 3:
             req = br.submit(nr=1)
+            f = open('country.html', 'w')
+            f.write(br.response().read())
+            f.close()
             resp = br.open(req.geturl())
             soup = BeautifulSoup(resp.get_data())
             resp.set_data(soup.prettify())

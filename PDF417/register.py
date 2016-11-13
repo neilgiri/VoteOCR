@@ -1,6 +1,6 @@
 import re
 import mechanize
-import parser
+import parserD
 
 def main(filename)
     br = mechanize.Browser()
@@ -29,10 +29,6 @@ def main(filename)
 
     response = br.submit()
     contents = response.read()
-
-    f = open("in.txt", "w")
-    f.write(contents)
-    f.close()
-
-    parser.main("in.txt")
-
+    
+    contents = contents.split('\n')
+    return reponseD.main(contents)

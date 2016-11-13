@@ -2,7 +2,7 @@ import re
 import mechanize
 import parserD
 
-def main(filename)
+def main(filename):
     br = mechanize.Browser()
     url_name = "http://www.datasymbol.com/barcode-recognition-sdk/barcode-reader/online-barcode-decoder.html"
 
@@ -31,4 +31,4 @@ def main(filename)
     contents = response.read()
     
     contents = contents.split('\n')
-    return reponseD.main(contents)
+    return parserD.main(contents)

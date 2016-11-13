@@ -1,0 +1,8 @@
+{% block content %}
+<form enctype="multipart/form-data" method = "post" class='image-form'>{% csrf_token %}
+  {% for field in form %}
+    <p>{{ field }}</p>
+  {% endfor %}
+  <button type="submit" id='submit-btn' class="save btn">Submit</button>
+</form>
+{% endblock %}

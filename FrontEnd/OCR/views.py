@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from .forms import Voter, GetImage
 from PIL import *
 from .register import main
+from california_voter import fill_registeration, classification_selection
 
 readValues = {}
 def Thanks(request):
@@ -29,6 +30,7 @@ def VoterForm(request):
             #d['county'] = getCounty()
             d['ppp'] = f.cleaned_data['ppp']
             print(d)
+            fill_registeration(d)
             return HttpResponseRedirect('/Thanks/')
     else:
         f = Voter(initial=readValues, label_suffix='')

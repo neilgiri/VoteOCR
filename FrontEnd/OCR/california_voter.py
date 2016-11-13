@@ -3,6 +3,7 @@ import mechanize
 import parser
 import forms
 from BeautifulSoup import BeautifulSoup
+from datetime import date
 
 def classification_selection(num):
     class_dict = {'1': 'A001', '2': 'B002', '3': 'C003', '4': 'D004', 
@@ -22,7 +23,6 @@ def fill_registeration(dictionary):
             br.form.set_value([classification_selection('1')], name='VoterType')
         elif i == 1:
             is_us_citizen = True
-            is_18 = True
             first_name = 'Titan'
             last_name = 'Yuan'
             month_birth = '5'
@@ -40,20 +40,22 @@ def fill_registeration(dictionary):
             select_party = True
             party = 'Democratic04'
 
+            if 
+
             br.form.set_value([dictionary['citizen']], type='checkbox', name='VoterInformation.IsUsCitizen')
             br.form.set_value(['true'], type='checkbox', name='VoterInformation.IsEighteenYear')
-            br.form.set_value(dictionary[fname], name='VoterInformation.NameFirst')
-            br.form.set_value(dictionary[lname], name='VoterInformation.NameLast')
-            br.form.set_value([month_birth], name='VoterInformation.Month')
-            br.form.set_value([day_birth], name='VoterInformation.Day')
-            br.form.set_value(year_birth, name='VoterInformation.Year')
+            br.form.set_value(dictionary['fname'], name='VoterInformation.NameFirst')
+            br.form.set_value(dictionary['lname'], name='VoterInformation.NameLast')
+            br.form.set_value([dictionary['month']], name='VoterInformation.Month')
+            br.form.set_value([dictionary['day']], name='VoterInformation.Day')
+            br.form.set_value(dictionary['year'], name='VoterInformation.Year')
 
             br.form.set_value(dictionary['numDL'], name='VoterInformation.CaIdentification')
-            br.form.set_value(ssn, name='VoterInformation.SsnLastFour')
+            br.form.set_value(dictionary['ssn'], name='VoterInformation.SsnLastFour')
             br.form.set_value(dictionary['aStreet'], name='VoterInformation.AddressStreet1')
             br.form.set_value(dictionary['aCity'], name='VoterInformation.AddressCity')
             br.form.set_value(dictionary['aZip'], name='VoterInformation.AddressZip')
-            br.form.set_value([county], name='VoterInformation.CountyIdKey')
+            br.form.set_value([dictionary['county']], name='VoterInformation.CountyIdKey')
             br.form.set_value(['True'], name='VoterInformation.isPoliticalPrefSelected')
             br.form.set_value([dictionary['ppp']], name='VoterInformation.PoliticalPartyIdKey')
         elif i == 2:
@@ -64,7 +66,7 @@ def fill_registeration(dictionary):
             dmv_signature = 'true'
             affirmation = 'true'
 
-            br.form.set_value([vote_mail], name='VoterInformation.IsVoteByMail')
+            br.form.set_value([dictionary['mail']], name='VoterInformation.IsVoteByMail')
             br.form.set_value([poll_worker], type='checkbox', name='VoterInformation.IsAPollWorker')
             br.form.set_value([polling_place], type='checkbox', name='VoterInformation.IsPollingPlaceProvided')
             br.form.set_value([dmv_signature], name="VoterInformation.IsDmvSignatureConsent")

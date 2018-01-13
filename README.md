@@ -1,3 +1,3 @@
-<h1>VoteOCR</h1>
+<h1>Easy Vote</h1>
 
-<p>Vote OCR is a student developed system that uses pytessaract and digital image recognition to simplify the process of registering to vote in the state of California</p>
+<p>Easy Vote is a student developed system that uses the mechanize library to simplify the process of registering to vote in the state of California</p>
